@@ -1,10 +1,10 @@
-# how-to-bind-columns-from-view-model-in-wpf-and-uwp-treegrid-in-mvvm
+# How to Bind Columns from ViewModel in WPF / UWP TreeGrid in MVVM?
 
-This example illustrates to bind the columns from ViewmModel in [WPF TreeGrid](https://www.syncfusion.com/wpf-controls/treegrid) and [UWP TreeGrid](https://www.syncfusion.com/uwp-ui-controls/treegrid)
+This example illustrates to bind the columns from ViewModel in [WPF TreeGrid](https://www.syncfusion.com/wpf-controls/treegrid) and [UWP TreeGrid](https://www.syncfusion.com/uwp-ui-controls/treegrid) (SfTreeGrid).
 
-You can bind the [SfTreeGrid.Columns](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.TreeGrid.SfTreeGrid.html#Syncfusion_UI_Xaml_TreeGrid_SfTreeGrid_Columns) property in ViewModel by having the binding property of `Syncfusion.SfGrid.UI.Xaml.TreeGrid.Columns` type. Thus, you can set binding to the `SfTreeGrid.Columns` property that provides DataContext of `TreeGrid` in ViewModel.
+You can bind the [SfTreeGrid.Columns](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.TreeGrid.SfTreeGrid.html#Syncfusion_UI_Xaml_TreeGrid_SfTreeGrid_Columns) property in ViewModel by having the binding property of **Syncfusion.SfGrid.UI.Xaml.TreeGrid.Columns** type. Thus, you can set binding to the **SfTreeGrid.Columns** property that provides DataContext of TreeGrid in ViewModel.
 
-## XAML code:
+### XAML:
 
 ```xml
 <syncfusion:SfTreeGrid Name="treeGrid" 
@@ -20,22 +20,29 @@ You can bind the [SfTreeGrid.Columns](https://help.syncfusion.com/cr/wpf/Syncfus
 </syncfusion:SfTreeGrid>
 ```
 
-Refer to the following code example in which the TreeGrid column is populated with some `TreeGridTextColumn` when creating the ViewModel instance.
+Refer to the following code example in which the TreeGrid column is populated with some [TreeGridTextColumn](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.TreeGrid.TreeGridTextColumn.html) when creating the ViewModel instance.
 
-## C# code
+### C#:
 
 ```c#
 public class ViewModel: NotificationObject
 {
+    #region Private Variables
+    private ObservableCollection<EmployeeInfo> _employees;
     private TreeGridColumns sfGridColumns;
+    #endregion
+
     public TreeGridColumns SfGridColumns
     {
         get { return sfGridColumns; }
         set
-        { this.sfGridColumns = value;
+        { 
+            this.sfGridColumns = value;
             RaisePropertyChanged("SfGridColumns");
         }
     }
+
+    #region ctr
 
     public ViewModel()
     {
@@ -47,5 +54,6 @@ public class ViewModel: NotificationObject
         sfGridColumns.Add(new TreeGridTextColumn() { MappingName = "Title" });
         sfGridColumns.Add(new TreeGridTextColumn() { MappingName = "Salary" });
     }
+    #endregion
 }
 ```
