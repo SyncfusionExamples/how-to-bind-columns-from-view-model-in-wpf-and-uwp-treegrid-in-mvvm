@@ -28,8 +28,11 @@ Refer to the following code example in which the TreeGrid column is populated wi
 public class ViewModel: NotificationObject
 {
     #region Private Variables
+
     private ObservableCollection<EmployeeInfo> _employees;
+
     private TreeGridColumns sfGridColumns;
+
     #endregion
 
     public TreeGridColumns SfGridColumns
